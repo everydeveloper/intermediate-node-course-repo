@@ -93,7 +93,7 @@ steps:
 
   - title: Create, Read, Update, and Delete
     description: Use other mongoose methods to create full CRUD for your user model
-    event: comment
+    event: issue_comment
     link: "{{ repoUrl }}/issues/3"
     actions:
       - type: respond
