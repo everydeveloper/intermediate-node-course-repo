@@ -1,6 +1,6 @@
 Let's start by making a User model for mongodb using the mongoose library. This will be the template used to describe what each individual *document* will look like in our *collection*.
 
-Create a file in the "model" directory called "User.js" and add this code to it:
+Create a "model" directory in the root of your project with a file called "User.js", then add this code to it:
 
 ```js
 const mongoose = require('mongoose');

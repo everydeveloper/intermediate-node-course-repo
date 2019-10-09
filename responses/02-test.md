@@ -10,11 +10,11 @@ Next, go to the body tab and select raw JSON, then paste this in the text under 
 
 ```json
 {
-	"user":{
-		"name":"Jim",
-		"email":"jim@email.com",
-		"password":"secretPassword"
-	}
+  "user":{
+    "name":"Jim",
+    "email":"jim@email.com",
+    "password":"secretPassword"
+  }
 }
 ```
 
@@ -24,7 +24,7 @@ To understand why this happened, remember that we said each email should be uniq
 
 ```javascript
 const UserSchema = new mongoose.Schema({
-	name: { type: String, required: true },
+  name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   hash: { type: String, required: true }
 });

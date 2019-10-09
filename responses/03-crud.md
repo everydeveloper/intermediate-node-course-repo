@@ -1,25 +1,25 @@
-Ok, lets add a route to find a user by their id. Insert this code in the "get" route:
+Ok, let's add a route to find a user by their id. Insert this code in the "get" route:
 
 ```javascript
 .get((req,res)=>{
-	User.findById(req.body.id,(err,data)=>{
-		if (err){
-			res.json({
-		    success: false,
-		    message: err
-		  })
-		} else if (!data){
-			res.json({
-		    success: false,
-		    message: "Not Found"
-		  })
-		} else {
-			res.json({
-		    success: true,
-		    data: data
-		  })
-		}
-	})
+  User.findById(req.body.id,(err,data)=>{
+    if (err){
+      res.json({
+        success: false,
+        message: err
+      })
+    } else if (!data){
+      res.json({
+        success: false,
+        message: "Not Found"
+      })
+    } else {
+      res.json({
+        success: true,
+        data: data
+      })
+    }
+  })
 })
 ```
 
@@ -29,7 +29,7 @@ Try testing this out by posting a new user, copying the value of their "_id", th
 
 ```json
 {
-	"id":"UserIDGoesHere"
+  "id":"UserIDGoesHere"
 }
 ```
 
@@ -42,106 +42,108 @@ All together our routes should look something like this:
 ```javascript
 app.route('/users')
 .post((req,res)=>{
-	User.create(
-		{
-			name:req.body.user.name,
-			email:req.body.user.email,
-			password:req.body.user.password
-		},
-		(err,data)=>{
-			if (err){
-				res.json({
-			    success: false,
-			    message: err
-			  })
-			} else if (!data){
-				res.json({
-			    success: false,
-			    message: "Not Found"
-			  })
-			} else {
-				res.json({
-			    success: true,
-			    data: data
-			  })
-			}
-		}
-	)
+  User.create(
+    {
+      name:req.body.user.name,
+      email:req.body.user.email,
+      password:req.body.user.password
+    },
+    (err,data)=>{
+      if (err){
+        res.json({
+          success: false,
+          message: err
+        })
+      } else if (!data){
+        res.json({
+          success: false,
+          message: "Not Found"
+        })
+      } else {
+        res.json({
+          success: true,
+          data: data
+        })
+      }
+    }
+  )
 })
 .get((req,res)=>{
-	User.findById(
-		req.body.id,
-		(err,data)=>{
-			if (err){
-				res.json({
-			    success: false,
-			    message: err
-			  })
-			} else if (!data){
-				res.json({
-			    success: false,
-			    message: "Not Found"
-			  })
-			} else {
-				res.json({
-			    success: true,
-			    data: data
-			  })
-			}
-		}
-	)
+  User.findById(
+    req.body.id,
+    (err,data)=>{
+      if (err){
+        res.json({
+          success: false,
+          message: err
+        })
+      } else if (!data){
+        res.json({
+          success: false,
+          message: "Not Found"
+        })
+      } else {
+        res.json({
+          success: true,
+          data: data
+        })
+      }
+    }
+  )
 })
 .put((req,res)=>{
-	User.findByIdAndUpdate(
-		req.body.id,
-		{
-			name:req.body.user.name,
-			email:req.body.user.email,
-			password:req.body.user.password
-		},
-		(err,data)=>{
-			if (err){
-				res.json({
-			    success: false,
-			    message: err
-			  })
-			} else if (!data){
-				res.json({
-			    success: false,
-			    message: "Not Found"
-			  })
-			} else {
-				res.json({
-			    success: true,
-			    data: data
-			  })
-			}
-		}
-	)
+  User.findByIdAndUpdate(
+    req.body.id,
+    {
+      name:req.body.user.name,
+      email:req.body.user.email,
+      password:req.body.user.password
+    },
+    (err,data)=>{
+      if (err){
+        res.json({
+          success: false,
+          message: err
+        })
+      } else if (!data){
+        res.json({
+          success: false,
+          message: "Not Found"
+        })
+      } else {
+        res.json({
+          success: true,
+          data: data
+        })
+      }
+    }
+  )
 })
 .delete((req,res)=>{
-	User.findByIdAndDelete(
-		req.body.id,
-		(err,data)=>{
-			if (err){
-				res.json({
-			    success: false,
-			    message: err
-			  })
-			} else if (!data){
-				res.json({
-			    success: false,
-			    message: "Not Found"
-			  })
-			} else {
-				res.json({
-			    success: true,
-			    data: data
-			  })
-			}
-		}
-	)
+  User.findByIdAndDelete(
+    req.body.id,
+    (err,data)=>{
+      if (err){
+        res.json({
+          success: false,
+          message: err
+        })
+      } else if (!data){
+        res.json({
+          success: false,
+          message: "Not Found"
+        })
+      } else {
+        res.json({
+          success: true,
+          data: data
+        })
+      }
+    }
+  )
 })
 ```
 
-Try testing these routes out in Postman, and *leave a comment  for the next steps.*
+Try testing these routes out in Postman. The put and delete methods will by default return the unmodified document. You can include an options argument with ["new" key set to "true"](https://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate), in order to get the modified document back.
+
+*Leave a comment when you are finished for the next steps.*

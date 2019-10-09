@@ -18,11 +18,11 @@ There are some express routes already setup in the server.js file. Also, we are 
 
 Here's a handy checklist of what you'll need to get started on this project:
 
-- [] MongoDB installed and configured
-- [] Node.js and Git installed and configured
-- [] Project cloned and dependencies installed
-- [] Postman installed
-- [] A console running the local mongoDB server (with the "mongod" command)
-- [] A console with "nodemon" watching your server.js file.
+- [ ] MongoDB installed and configured
+- [ ] Node.js and Git installed and configured
+- [ ] Project cloned and dependencies installed
+- [ ] Postman installed
+- [ ] A console running the local mongoDB server (with the "mongod" command)
+- [ ] A console with "nodemon" watching your server.js file.
 
 Once you've completed the list, close this issue for the next steps.

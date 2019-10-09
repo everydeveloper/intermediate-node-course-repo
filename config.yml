@@ -19,7 +19,7 @@ before:
 
 steps:
   - title: Intro
-    description: overview of project
+    description: Overview of project
     event: issue_comment
     link: "{{ repoUrl }}/issues/1"
     actions: 

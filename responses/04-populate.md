@@ -6,16 +6,16 @@ Create a new file in your "models" folder called "Topic.js" and paste this code 
 const mongoose = require('mongoose');
 
 const TopicSchema = new mongoose.Schema({
-	title: { type: String, required: true },
-	description: { type: String, required: true },
-	author: { type: mongoose.Schema.Types.ObjectId, ref:"User", required: true  },
-	responses: [{ type: mongoose.Schema.Types.ObjectId, ref:"Response"}]
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  author: { type: mongoose.Schema.Types.ObjectId, ref:"User", required: true  },
+  responses: [{ type: mongoose.Schema.Types.ObjectId, ref:"Response"}]
 });
 
-TopicSchema.pre('find',function(next){
-	this.populate('author','name')
-	this.populate('responses')
-	next()
+TopicSchema.pre('findOne',function(next){
+  this.populate('author','name')
+  this.populate('responses')
+  next()
 })
 
 module.exports= mongoose.model('Topic',TopicSchema)
@@ -31,14 +31,14 @@ Let's make that Response model, by creating a file called "Response.js" in the "
 const mongoose = require('mongoose');
 
 const ResponseSchema = new mongoose.Schema({
-	comment: { type: String, required: true },
-	author: { type: mongoose.Schema.Types.ObjectId, ref:"User" },
-	topic: { type: mongoose.Schema.Types.ObjectId, ref:"Topic" }
+  comment: { type: String, required: true },
+  author: { type: mongoose.Schema.Types.ObjectId, ref:"User" },
+  topic: { type: mongoose.Schema.Types.ObjectId, ref:"Topic" }
 });
 
-ResponseSchema.pre('find',function(next){
-	this.populate('author','name')
-	next()
+ResponseSchema.pre('findOne',function(next){
+  this.populate('author','name')
+  next()
 })
 
 module.exports= mongoose.model('Response',ResponseSchema)

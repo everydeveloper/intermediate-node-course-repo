@@ -5,21 +5,21 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema({
-	name: { type: String, required: true },
+  name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true }
 });
 
 UserSchema.pre("save", function(next) {
-    if(!this.isModified("password")) {
-        return next();
-    }
-    this.password = bcrypt.hashSync(this.password, 10);
-    next();
+  if(!this.isModified("password")) {
+    return next();
+  }
+  this.password = bcrypt.hashSync(this.password, 10);
+  next();
 });
 
 UserSchema.methods.comparePassword = function(inputPassword, callback) {
-    return callback(null, bcrypt.compareSync(inputPassword, this.password));
+  return callback(null, bcrypt.compareSync(inputPassword, this.password));
 };
 
 module.exports= mongoose.model('User',UserSchema)
@@ -36,32 +36,32 @@ Let's finish by adding a login route to our server.js file:
 
 ```javascript
 app.post('/login',async (req,res)=>{
-	try {
+  try {
     var user = await User.findOne({ email: req.body.email }).exec();
     if(!user) {
       return res.json({ 
-      	success:false,
-      	message: "User not found" 
+        success:false,
+        message: "User not found" 
       });
     }
     user.comparePassword(req.body.password, (error, match) => {
       if(!match) {
         return res.json({ 
-        	success:false,
-        	message: "password does not match" 
+          success:false,
+          message: "password does not match" 
         });
       }
     });
     res.json({ 
-    	success: true,
-    	message: "The username and password combination is correct!" 
+      success: true,
+      message: "The username and password combination is correct!" 
     });
-	} catch (error) {
-	    res.json({
-	    	success:false,
-	    	message:error
-	    });
-	}
+  } catch (error) {
+      res.json({
+        success:false,
+        message:error
+      });
+  }
 })
 ```
 
@@ -71,8 +71,8 @@ Now test our login route by making a "post" request to "http://localhost:8000/lo
 
 ```json
 {
-	"email":"emailGoesHere",
-	"password":"passwordGoesHere"
+  "email":"emailGoesHere",
+  "password":"passwordGoesHere"
 }
 ```
 
