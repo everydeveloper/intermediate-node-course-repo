@@ -1,0 +1,155 @@
+title: Intermediate NodeJS
+tagline: Create a REST api with Node.js, Express.js, and MongoDB
+description: This tutorial expands on concepts in the intro to Node.js and Express.js course. You will learn how to use a database (MongoDB) to Create, Read, Update, and Delete data.
+tags:
+  - node.js
+  - express.js
+  - mongoose.js
+  - JavaScript
+  - MongoDB
+
+template:
+  name: intermediate-node-course
+  repo: intermediate-node-course-template
+  description: an intermediate node.js course
+before:
+  - type: createIssue
+    title: Set up node project
+    body: 01-intro.md
+
+steps:
+  - title: Intro
+    description: overview of project
+    event: issue_comment
+    link: "{{ repoUrl }}/issues/1"
+    actions: 
+      - type: respond
+        with: 01-setup.md
+        issue: 1
+
+  - title: Set-up
+    description: Install and setup your developer environment
+    event: issues.closed
+    link: "{{ repoUrl }}/issues/1"
+    actions: 
+      - type: respond
+        with: 01-complete.md
+        issue: 1
+      - type: createIssue
+        title: Create user model and post data 
+        body: 02-model.md
+
+  - title: Create user model
+    description: Create a user model for MongoDB using mongoose.js
+    event: issue_comment
+    link: "{{ repoUrl }}/issues/2"
+    actions: 
+      - type: gate
+        left: '%payload.comment.body%'
+        operator: ==
+        right: email
+        else: 
+          - type: respond
+            with: incorrect.md
+            issue: 2
+            data: 
+              correctAnswer: 'email'
+      - type: respond
+        with: 02-query.md
+        issue: 2
+
+  - title: Create new Users
+    description: Set up a post route to create new users
+    event: issue_comment
+    link: "{{ repoUrl }}/issues/2"
+    actions:
+      - type: gate
+        left: '%payload.comment.body%'
+        operator: ==
+        right: c
+        else: 
+          - type: respond
+            with: incorrect.md
+            issue: 2
+            data: 
+              correctAnswer: 'c'
+      - type: respond
+        with: 02-test.md
+        issue: 2
+
+  - title: Test route
+    description: Test your route with Postman
+    event: push
+    link: "{{ repoUrl }}/issues/2"
+    actions:
+      - type: respond
+        with: 02-complete.md
+        issue: 2
+      - type: createIssue
+        title: Create, Read, Update, and Delete
+        body: 03-crud.md
+      - type: closeIssue
+        issue: 2
+
+  - title: Create, Read, Update, and Delete
+    description: Use other mongoose methods to create full CRUD for your user model
+    event: comment
+    link: "{{ repoUrl }}/issues/3"
+    actions:
+      - type: respond
+        with: 03-refactor.md
+        issue: 3
+
+  - title: Refactor, Reduce, Reuse
+    description: Make your routes easy to maintain by refactoring repetitive code
+    event: push
+    link: "{{ repoUrl }}/issues/3"
+    actions:
+      - type: respond
+        with: 03-complete.md
+        issue: 3
+      - type: createIssue
+        title: Mongoose lifecycle hooks
+        body: 04-populate.md
+      - type: closeIssue
+        issue: 3
+
+  - title: Populate
+    description: Create new nested models that populate with lifecycle hooks
+    event: push
+    link: "{{ repoUrl }}/issues/4"
+    actions:
+      - type: respond
+        with: 04-complete.md
+        issue: 4
+      - type: createIssue
+        title: Refactor CRUD to use in new routes
+        body: 05-refactor.md
+      - type: closeIssue
+        issue: 4
+
+  - title: Refactor CRUD to use in new routes
+    description: Create function from CRUD routes to reuse code for multiple models
+    event: push
+    link: "{{ repoUrl }}/issues/5"
+    actions:
+      - type: respond
+        with: 05-complete.md
+        issue: 5
+      - type: createIssue
+        title: Encrypt passwords and login
+        body: 06-passwords.md
+      - type: closeIssue
+        issue: 5
+
+    - title: Encrypt passwords and login
+      description: Use lifecycle hooks to encrypt passwords and create a login route
+      event: push
+      link: "{{ repoUrl }}/issues/6"
+      actions:
+        - type: respond
+          with: 06-complete.md
+          issue: 6
+        - type: closeIssue
+          issue: 6
+
