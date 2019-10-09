@@ -142,14 +142,14 @@ steps:
       - type: closeIssue
         issue: 5
 
-    - title: Encrypt passwords and login
-      description: Use lifecycle hooks to encrypt passwords and create a login route
-      event: push
-      link: "{{ repoUrl }}/issues/6"
-      actions:
-        - type: respond
-          with: 06-complete.md
-          issue: 6
-        - type: closeIssue
-          issue: 6
+  - title: Encrypt passwords and login
+    description: Use lifecycle hooks to encrypt passwords and create a login route
+    event: push
+    link: "{{ repoUrl }}/issues/6"
+    actions:
+      - type: respond
+        with: 06-complete.md
+        issue: 6
+      - type: closeIssue
+        issue: 6
 
