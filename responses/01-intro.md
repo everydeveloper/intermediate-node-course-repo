@@ -4,10 +4,10 @@ Welcome to the Intermediate Node.js course! If you are taking this course, I am 
 
 In this tutorial, you will learn how to connect your server to a NoSQL database called MongoDB. You will also learn how to refactor repetitive code, to make it easier to maintain. By the end of this you will have built an API that does the following:
 
-* Create, Read, Update, and Destroy (CRUD) documents in MongoDB
+* Create, Read, Update, and Delete (CRUD) documents in MongoDB
 * Sign up users and protect their passwords with Bcrypt.
 * Populated nested models with Mongoose lifecycle hooks.
 
 This is an interactive tutorial. At the end of each section, you will be prompted to do something to continue. If you don't get a response right away, try refreshing your browser.
 
-*Leave a comment on this issue to continue*
+*Leave a comment about something you would like to Create, Read, Update, and Delete to continue*
