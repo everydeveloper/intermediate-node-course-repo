@@ -36,7 +36,7 @@ steps:
         with: 01-complete.md
         issue: 1
       - type: createIssue
-        title: Create user model and post data 
+        title: Create User model 
         body: 02-model.md
 
   - title: Create user model
@@ -55,11 +55,11 @@ steps:
             data: 
               correctAnswer: 'email'
       - type: respond
-        with: 02-query.md
+        with: 02-routes.md
         issue: 2
 
-  - title: Create new Users
-    description: Set up a post route to create new users
+  - title: Using mongoose with express
+    description: Learn how a mongoose model is used with express routes
     event: issue_comment
     link: "{{ repoUrl }}/issues/2"
     actions:
@@ -74,11 +74,11 @@ steps:
             data: 
               correctAnswer: 'c'
       - type: respond
-        with: 02-test.md
+        with: 02-shell.md
         issue: 2
 
-  - title: Test route
-    description: Test your route with Postman
+  - title: Using the mongo shell
+    description: Visualize and manipulate data on the commande line 
     event: push
     link: "{{ repoUrl }}/issues/2"
     actions:
@@ -87,69 +87,64 @@ steps:
         issue: 2
       - type: createIssue
         title: Create, Read, Update, and Delete
-        body: 03-crud.md
+        body: 03-create.md
       - type: closeIssue
         issue: 2
 
-  - title: Create, Read, Update, and Delete
-    description: Use other mongoose methods to create full CRUD for your user model
+  - title: Create Users
+    description: Use the User.create method to post new users
     event: issue_comment
     link: "{{ repoUrl }}/issues/3"
     actions:
       - type: respond
-        with: 03-refactor.md
+        with: 03-read.md
         issue: 3
+        action_id: new_user
+        data:
+          userID: '%payload.comment.body%'
 
-  - title: Refactor, Reduce, Reuse
-    description: Make your routes easy to maintain by refactoring repetitive code
+  - title: Read Users
+    description: Get data from a user using an id 
     event: push
     link: "{{ repoUrl }}/issues/3"
     actions:
       - type: respond
+        with: 03-update.md
+        issue: 3
+        data: 
+          userID: '%actions.new_user.data.userID%'
+
+  - title: Update users
+    description: Update data with a put request 
+    event: push
+    link: "{{ repoUrl }}/issues/3"
+    actions:
+      - type: respond
+        with: 03-delete.md
+        issue: 3
+        data: 
+          userID: '%actions.new_user.data.userID%'
+
+  - title: Delete users
+    description: Delete users with a delete request
+    event: push
+    link: "{{ repoUrl }}/issues/3"
+    actions:
+      - type: createIssue
+        title: Refactor
+      - type: respond
         with: 03-complete.md
         issue: 3
-      - type: createIssue
-        title: Mongoose lifecycle hooks
-        body: 04-populate.md
       - type: closeIssue
         issue: 3
 
-  - title: Populate
-    description: Create new nested models that populate with lifecycle hooks
+  - title: Refactor, Reduce, Reuse
+    description: Make your routes easy to maintain by refactoring repetitive code
     event: push
     link: "{{ repoUrl }}/issues/4"
     actions:
       - type: respond
         with: 04-complete.md
         issue: 4
-      - type: createIssue
-        title: Refactor CRUD to use in new routes
-        body: 05-refactor.md
       - type: closeIssue
         issue: 4
-
-  - title: Refactor CRUD to use in new routes
-    description: Create function from CRUD routes to reuse code for multiple models
-    event: push
-    link: "{{ repoUrl }}/issues/5"
-    actions:
-      - type: respond
-        with: 05-complete.md
-        issue: 5
-      - type: createIssue
-        title: Encrypt passwords and login
-        body: 06-passwords.md
-      - type: closeIssue
-        issue: 5
-
-  - title: Encrypt passwords and login
-    description: Use lifecycle hooks to encrypt passwords and create a login route
-    event: push
-    link: "{{ repoUrl }}/issues/6"
-    actions:
-      - type: respond
-        with: 06-complete.md
-        issue: 6
-      - type: closeIssue
-        issue: 6
-

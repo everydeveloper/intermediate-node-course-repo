@@ -214,39 +214,4 @@ app.route('/users/:id')
 })
 ```
 
-## Create route set-up function
-
-The code above is much easier to maintain. But what if we want to add new models using this same pattern? The only thing that would change is the route name, and the model name
-
-```javascript
-function setUpRoutes(route,Model){
-  app.post(route,(req,res)=>{
-    Model.create(
-      {...req.body.newData},
-      (err,data)=>{sendResponse(res,err,data)}
-    )
-  })
-
-  app.route(route+'/:id')
-  .get((req,res)=>{
-    Model.findById(
-      req.params.id,
-      (err,data)=>{sendResponse(res,err,data)})
-  })
-  .put((req,res)=>{
-    Model.findByIdAndUpdate(
-      req.params.id,
-      {...req.body.newData},
-      (err,data)=>{sendResponse(res,err,data)})
-  })
-  .delete((req,res)=>{
-    Model.findByIdAndDelete(
-      req.params.id,
-      (err,data)=>{sendResponse(res,err,data)})
-  })
-}
-
-setUpRoutes('/users',User);
-``` 
-
-Test this in Postman to make sure you refactored correctly. When you are finished, *commit these changes and push to GitHub*.
+The code above is much easier to maintain. Test this in Postman to make sure you refactored correctly. When you are finished, *commit these changes and push to GitHub*.

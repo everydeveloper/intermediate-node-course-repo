@@ -1,3 +1,3 @@
-Awesome! As we just said, we lose some flexability when we process the requests the same way each time. However, we can make up for this by adding methods to the mongoose models.
+Awesome! The last thing I want to go over is refactoring our routes to make them easier to maintain. 
 
 [Click here]({{ repoUrl }}/issues/4 ) to learn how.
