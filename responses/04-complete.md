@@ -1,4 +1,4 @@
-Good Job! 👍 You are finished! But, there is still much more you can do with Node.js Express.js and MongoDB. If you want to continue working on this, here are some next steps to improve security:
+Good Job! 👍 You are finished! But, there is still much more you can do with Node.js, Express.js, and MongoDB. If you want to continue working on this, here are some next steps to improve security:
 
 1. Encrypt your user passwords with a library like "[bcrypt](https://www.npmjs.com/package/bcrypt)" before saving them.
 

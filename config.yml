@@ -99,7 +99,6 @@ steps:
       - type: respond
         with: 03-read.md
         issue: 3
-        action_id: new_user
         data:
           userID: '%payload.comment.body%'
 
@@ -111,8 +110,6 @@ steps:
       - type: respond
         with: 03-update.md
         issue: 3
-        data: 
-          userID: '%actions.new_user.data.userID%'
 
   - title: Update users
     description: Update data with a put request 
@@ -122,8 +119,6 @@ steps:
       - type: respond
         with: 03-delete.md
         issue: 3
-        data: 
-          userID: '%actions.new_user.data.userID%'
 
   - title: Delete users
     description: Delete users with a delete request

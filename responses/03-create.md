@@ -1,8 +1,6 @@
 ## CREATE: User.create 
 
-Let's start using this model to create some users. Go to your server.js file and add this line after all the libraries are imported.
-
-Insert the following code in the post route so it looks like this:
+Let's start using this model to create some users.Insert the following code in the post route so it looks like this:
 
 ```javascript
 // CREATE

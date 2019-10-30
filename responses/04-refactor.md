@@ -1,6 +1,21 @@
 At this point, your server.js file should look something like this:
 
 ```javascript
+const express= require('express');
+const mongoose= require('mongoose');
+const bodyParser= require('body-parser');
+const port=8000;
+const app= express();
+
+const User=require('./models/User');
+mongoose.connect('mongodb://localhost/userData')
+
+app.use(bodyParser.json());
+
+app.listen(port, ()=>{
+  console.log(`server is listening on port:${port}`)
+})
+
 app.post('/users',(req,res)=>{
   User.create(
     {
@@ -59,6 +74,9 @@ app.route('/users/:id')
       name:req.body.newData.name,
       email:req.body.newData.email,
       password:req.body.newData.password
+    },
+    {
+      new:true
     },
     (err,data)=>{
       if (err){
@@ -158,6 +176,7 @@ app.route('/users/:id')
       email:req.body.newData.email,
       password:req.body.newData.password
     },
+    {new:true},
     (err,data)=>{sendResponse(res,err,data)})
 })
 .delete((req,res)=>{
@@ -205,6 +224,7 @@ app.route('/users/:id')
   User.findByIdAndUpdate(
     req.params.id,
     {...req.body.newData},
+    {new:true},
     (err,data)=>{sendResponse(res,err,data)})
 })
 .delete((req,res)=>{
@@ -214,4 +234,6 @@ app.route('/users/:id')
 })
 ```
 
-The code above is much easier to maintain. Test this in Postman to make sure you refactored correctly. When you are finished, *commit these changes and push to GitHub*.
+The code above is much easier to maintain. Also, with the spread syntax you only need to include values that are being changed. In the first version we were explicitly looking for a value at each key to update. If the values were not included, they would be set to "null". Now our routes are more flexible, since the object to update is defined by the request. This might seem weird at first, but the model should keep your data consistent.
+
+Test this in Postman to make sure you refactored correctly. When you are finished, *commit these changes and push to GitHub*.
