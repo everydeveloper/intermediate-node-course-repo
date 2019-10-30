@@ -132,6 +132,7 @@ steps:
     actions:
       - type: createIssue
         title: Refactor
+        body: 04-refactor.md
       - type: respond
         with: 03-complete.md
         issue: 3
